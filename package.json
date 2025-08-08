@@ -44,12 +44,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AliSafari-IT/asafarim.git",
-    "directory": "ASafariM.Clients/packages/markdown-utils"
+    "url": "https://github.com/AliSafari-IT/markdown-utils.git"
   },
   "homepage": "https://AliSafari-IT.github.io/markdown-utils",
   "bugs": {
-    "url": "https://github.com/AliSafari-IT/asafarim/issues"
+    "url": "https://github.com/AliSafari-IT/markdown-utils/issues"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
