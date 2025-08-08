@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@asafarim/markdown-utils Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .demo-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .demo-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .demo-section h3 {
+            color: #555;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .input-group {
+            margin: 1rem 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        textarea, input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .results {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
+        .results.json {
+            color: #d63384;
+        }
+        
+        .results.text {
+            color: #198754;
+        }
+        
+        .results.number {
+            color: #0d6efd;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background: #5a6fd8;
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+        }
+        
+        .card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 3px;
+            padding: 0.2rem 0.4rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .results.html {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .results.html h1, .results.html h2, .results.html h3 {
+            color: #667eea;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        .results.html a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .results.html a:hover {
+            text-decoration: underline;
+        }
+        
+        .results.html img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        
+        .results.html pre {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        
+        .results.html code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .results.html ul {
+            margin: 0.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .results.html li {
+            margin: 0.25rem 0;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        .tab-container {
+            margin: 1rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            color: #666;
+        }
+        
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: #f8f9fa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .demo-section {
+                padding: 1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>@asafarim/markdown-utils</h1>
+            <p class="subtitle">Interactive Demo - Explore Markdown Processing Utilities</p>
+        </header>
+
+        <div class="demo-section">
+            <h2>📝 Content Analysis</h2>
+            <div class="input-group">
+                <label for="markdown-input">Markdown Content:</label>
+                <textarea id="markdown-input" placeholder="Enter your markdown content here..."># Welcome to Our Blog
+
+This is a **comprehensive guide** to using *markdown utilities* in your projects.
+
+## Features
+
+- Extract headings and paragraphs
+- Count words and estimate reading time
+- Parse links and images
+- Validate markdown syntax
+
+Check out our [documentation](https://example.com/docs) for more details.
+
+![Sample Image](https://via.placeholder.com/300x200 "Sample Image Title")
+
+### Code Example
+
+```javascript
+const utils = require('@asafarim/markdown-utils');
+console.log('Hello World!');
+```
+
+This content contains approximately 50 words and should take about 1 minute to read.</textarea>
+            </div>
+
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="content">Content Extraction</button>
+                    <button class="tab-button" data-tab="analysis">Analysis</button>
+                    <button class="tab-button" data-tab="validation">Validation</button>
+                </div>
+
+                <div class="tab-content active" id="content-tab">                    <div class="button-group">
+                        <button onclick="extractHeadings()">Extract Headings</button>
+                        <button onclick="extractParagraph()">First Paragraph</button>
+                        <button onclick="extractLinks()">Extract Links</button>
+                        <button onclick="extractImages()">Extract Images</button>
+                        <button onclick="stripMarkdown()">Strip Markdown</button>
+                        <button onclick="parseToHtml()">Parse to HTML</button>
+                    </div>
+                    <div id="content-results" class="results"></div>
+                </div>
+
+                <div class="tab-content" id="analysis-tab">
+                    <div class="button-group">
+                        <button onclick="analyzeWordCount()">Word Count</button>
+                        <button onclick="analyzeReadingTime()">Reading Time</button>
+                        <button onclick="analyzeAll()">Analyze All</button>
+                    </div>
+                    <div id="analysis-results" class="results"></div>
+                </div>
+
+                <div class="tab-content" id="validation-tab">
+                    <div class="button-group">
+                        <button onclick="validateSyntax()">Validate Syntax</button>
+                        <button onclick="validateLinks()">Validate Links</button>
+                        <button onclick="validateImages()">Validate Images</button>
+                    </div>
+                    <div id="validation-results" class="results"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📁 Path & File Utilities</h2>
+            <div class="grid">
+                <div class="card">
+                    <h4>Filename Processing</h4>
+                    <div class="input-group">
+                        <label for="filename-input">Filename:</label>
+                        <input type="text" id="filename-input" value="2023-12-01_my-awesome-blog-post.md" placeholder="Enter filename...">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="processFilename()">Process Filename</button>
+                    </div>
+                    <div id="filename-results" class="results"></div>
+                </div>
+
+                <div class="card">
+                    <h4>Path Operations</h4>
+                    <div class="input-group">
+                        <label for="filepath-input">File Path:</label>
+                        <input type="text" id="filepath-input" value="/content/blog/2023/my-article.md" placeholder="Enter file path...">
+                    </div>
+                    <div class="input-group">
+                        <label for="basepath-input">Base Path:</label>
+                        <input type="text" id="basepath-input" value="/content" placeholder="Enter base path...">
+                    </div>
+                    <div class="button-group">
+                        <button onclick="processPath()">Process Path</button>
+                    </div>
+                    <div id="path-results" class="results"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>📅 Date Utilities</h2>
+            <div class="input-group">
+                <label for="date-input">Date String or Markdown Content:</label>
+                <input type="text" id="date-input" value="2023-12-01" placeholder="Enter date or markdown content...">
+            </div>
+            <div class="button-group">
+                <button onclick="parseDates()">Parse Dates</button>
+                <button onclick="formatDates()">Format Dates</button>
+            </div>
+            <div id="date-results" class="results"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>🔧 Batch Processing Example</h2>
+            <p>This section demonstrates processing multiple markdown files at once:</p>
+            <div class="button-group">
+                <button onclick="batchProcessDemo()">Run Batch Demo</button>
+                <button onclick="clearBatchResults()">Clear Results</button>
+            </div>
+            <div id="batch-results" class="results"></div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
