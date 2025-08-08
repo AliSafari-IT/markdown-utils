@@ -1,4 +1,4 @@
-# @asafarim/markdown-utils
+# Package @asafarim/markdown-utils
 
 [![npm version](https://badge.fury.io/js/@asafarim%2Fmarkdown-utils.svg)](https://badge.fury.io/js/@asafarim%2Fmarkdown-utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -15,6 +15,11 @@ A comprehensive collection of utility functions for markdown processing, metadat
 - **🎯 TypeScript Support** - Full type definitions included
 - **🌳 Tree Shakable** - Import only what you need
 - **📦 Multiple Formats** - ESM and CommonJS support
+
+-----
+• 👉 View live demo at: [@asafarim/markdown-utils Demo](https://alisafari-it.github.io/markdown-utils/)
+-----
+
 
 ## 📦 Installation
 
