@@ -1,6 +1,6 @@
 {
   "name": "@asafarim/markdown-utils",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Utility functions for markdown processing, metadata extraction, and content parsing",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -14,6 +14,7 @@
   },
   "files": [
     "dist",
+    "demo",
     "README.md",
     "LICENSE"
   ],
