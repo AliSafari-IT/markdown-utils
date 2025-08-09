@@ -31,6 +31,7 @@ import {
   validateMarkdownLinks,
   validateMarkdownImages,
 } from '../..';
+import { PackageLinks } from '@asafarim/shared';
 
 const initialMarkdown = `# Welcome to Our Blog
 
@@ -250,6 +251,7 @@ This article contains multiple paragraphs and should demonstrate the various uti
         <h1>@asafarim/markdown-utils</h1>
         <p className="subtitle">Interactive Demo - Explore Markdown Processing Utilities</p>
       </header>
+      <PackageLinks packageName="@asafarim/markdown-utils" githubPath="markdown-utils" demoPath='https://alisafari-it.github.io/markdown-utils/' />
 
       <div className="demo-section">
         <h2>📝 Content Analysis</h2>
