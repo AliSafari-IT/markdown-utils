@@ -20,4 +20,4 @@ const utils = require('@asafarim/markdown-utils');
 console.log('Hello World!');
 ```
 
-This content contains approximately 50 words and should take about 1 minute to read.
+This content contains approximately 65 words and should take about 1 minute to read.

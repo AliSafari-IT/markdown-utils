@@ -1,21 +1,27 @@
 {
-  "name": "@asafarim/markdown-utils-demo",
+  "name": "markdown-utils-demo",
   "version": "1.0.0",
   "description": "Demo application showcasing the @asafarim/markdown-utils package",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "kill-port 3005 && vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@asafarim/markdown-utils": "link:../"
+    "@asafarim/markdown-utils": "link:../",
+    "@asafarim/shared": "^1.7.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
     "typescript": "^5.0.0",
+    "kill-port": "^2.0.1",
     "vite": "^5.0.0"
   }
 }
