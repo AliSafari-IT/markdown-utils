@@ -30,7 +30,7 @@ import {
   validateMarkdown,
   validateMarkdownLinks,
   validateMarkdownImages,
-} from '../..';
+} from '@asafarim/markdown-utils';
 import { PackageLinks } from '@asafarim/shared';
 
 const initialMarkdown = `# Welcome to Our Blog
@@ -172,6 +172,23 @@ const App: React.FC = () => {
       parsedDate: parsedDate?.toISOString() || null,
       extractedFromContent: extractedFromContent?.toISOString() || null,
       isValidDate: !!(parsedDate || extractedFromContent),
+    };
+  }, [dateInput]);
+
+  const dateFormatInfo = useMemo(() => {
+    let d: Date;
+    try {
+      d = new Date(dateInput);
+      if (isNaN(d.getTime())) d = new Date();
+    } catch {
+      d = new Date();
+    }
+    return {
+      iso: d.toISOString(),
+      readable: d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      short: d.toLocaleDateString('en-US'),
+      timeAgo: getTimeAgo(d),
+      formatted: formatDate(d),
     };
   }, [dateInput]);
 
@@ -336,6 +353,7 @@ This article contains multiple paragraphs and should demonstrate the various uti
           <input id="date-input" type="text" value={dateInput} onChange={(e) => setDateInput(e.target.value)} />
         </div>
         <div id="date-results" className="results json">{JSON.stringify(dateParseInfo, null, 2)}</div>
+        <div className="results json" style={{ marginTop: '12px' }}>{JSON.stringify(dateFormatInfo, null, 2)}</div>
       </div>
 
       <div className="demo-section">
